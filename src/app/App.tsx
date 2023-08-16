@@ -1,8 +1,12 @@
+import { StoreProvider } from './providers';
 import './styles/index.scss';
 
 const App = () => {
-  return <div>App</div>;
+  return (
+    <StoreProvider>
       <div>App</div>
+    </StoreProvider>
+  );
 };
 
 export default App;
