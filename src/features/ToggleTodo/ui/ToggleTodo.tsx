@@ -1,7 +1,7 @@
 import { toggleTodoById } from '@/entities/todo/model/todoSlice';
-import styles from './ToggleTodo.module.scss';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { CheckBox } from '@/shared/ui/CheckBox';
+import styles from './ToggleTodo.module.scss';
 
 interface ToggleTodoProps {
   className?: string;

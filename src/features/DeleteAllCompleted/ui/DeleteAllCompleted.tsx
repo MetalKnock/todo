@@ -1,7 +1,6 @@
 import { Button } from '@/shared/ui/Button';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { filterCompleted } from '@/entities/todo/model/todoSlice';
-import styles from './DeleteAllCompleted.module.scss';
 
 interface DeleteAllCompletedProps {
   className?: string;
@@ -15,7 +14,7 @@ const DeleteAllCompleted = ({ className }: DeleteAllCompletedProps) => {
   };
 
   return (
-    <Button className={`${styles.DeleteAllCompleted} ${className}`} onClick={handleClick}>
+    <Button className={className} onClick={handleClick}>
       Delete all completed
     </Button>
   );
