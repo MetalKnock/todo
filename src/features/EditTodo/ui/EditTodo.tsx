@@ -14,7 +14,7 @@ const EditTodo = ({ className, id, title }: EditTodoProps) => {
   const handleClick = () => {
     // eslint-disable-next-line no-alert
     const newTitle = prompt('Enter new title', title);
-    dispatch(setNewTitle({ id, title: newTitle || '' }));
+    dispatch(setNewTitle({ id, title: newTitle || title }));
   };
   return <EditIcon className={`${styles.EditTodo} ${className}`} onClick={handleClick} />;
 };
