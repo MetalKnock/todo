@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { ButtonHTMLAttributes, ReactNode, memo } from 'react';
 import styles from './Button.module.scss';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -8,7 +8,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   rightSlot?: ReactNode;
 }
 
-const Button = ({ className, children, leftSlot, rightSlot, ...props }: ButtonProps) => {
+const Button = memo(({ className, children, leftSlot, rightSlot, ...props }: ButtonProps) => {
   return (
     <button className={`${styles.Button} ${className} `} type='button' {...props}>
       {leftSlot}
@@ -16,6 +16,6 @@ const Button = ({ className, children, leftSlot, rightSlot, ...props }: ButtonPr
       {rightSlot}
     </button>
   );
-};
+});
 
 export default Button;
