@@ -1,0 +1,18 @@
+.TodoItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: to-rem(12px) to-rem(14px);
+
+  list-style: none;
+
+  border: 2px solid var(--color-border);
+  border-radius: 20px;
+}
+
+.text {
+  &_lineThrough {
+    text-decoration: line-through;
+  }
+}

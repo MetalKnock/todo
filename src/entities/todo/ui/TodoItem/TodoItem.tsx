@@ -14,7 +14,7 @@ const TodoItem = ({ className, todo, leftSlot, rightSlot }: TodoItemProps) => {
   return (
     <li className={`${styles.TodoItem} ${className}`}>
       <div>{leftSlot}</div>
-      <p className={`${styles.text} ${completed ? styles.text_strikethrough : ''}`}>{title}</p>
+      <p className={`${styles.text} ${completed ? styles.text_lineThrough : ''}`}>{title}</p>
       <div>{rightSlot}</div>
     </li>
   );
