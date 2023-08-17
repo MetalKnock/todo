@@ -31,6 +31,10 @@
     border: solid var(--primary-color);
     border-width: 0 2px 2px 0;
   }
+
+  &:hover {
+    background: var(--secondary-color-hover);
+  }
 }
 
 .input {

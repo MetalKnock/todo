@@ -8,9 +8,9 @@ import { ErrorMessage } from '@/shared/ui/ErrorMessage';
 import { Spinner } from '@/shared/ui/Spinner/';
 import { CreateTodo } from '@/features/CreateTodo';
 import { getSelectedTodosSelector } from '@/entities/todo/model/todoSelectors';
-import FilterPanel from '@/features/FilterPanel/ui/FilterPanel';
-import styles from './Main.module.scss';
+import { FilterPanel } from '@/features/FilterPanel/';
 import { DeleteAllCompleted } from '@/features/DeleteAllCompleted';
+import styles from './Main.module.scss';
 
 interface MainProps {
   className?: string;
@@ -35,14 +35,14 @@ const Main = ({ className }: MainProps) => {
     <div className={`${styles.Main} ${className}`}>
       {!isIdle && (
         <>
-          <FilterPanel />
-          <CreateTodo />
+          <FilterPanel className={styles.filterPanel} />
+          <CreateTodo className={styles.createTodo} />
         </>
       )}
       {isLoading && <Spinner />}
-      {isIdle && !isLoading && <p>Idle</p>}
+      {isIdle && !isLoading && <p className={styles.text}>Idle</p>}
       {shouldShowTodoList && <TodoList todos={todos} />}
-      {shouldShowEmptyMessage && <p>Empty</p>}
+      {shouldShowEmptyMessage && <p className={styles.text}>Empty</p>}
       {shouldShowDeleteAllCompleted && <DeleteAllCompleted />}
       {error && <ErrorMessage errorMessage={error} />}
     </div>

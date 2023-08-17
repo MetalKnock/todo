@@ -5,7 +5,9 @@ import './styles/index.scss';
 const App = () => {
   return (
     <StoreProvider>
-      <Main />
+      <div className='container'>
+        <Main />
+      </div>
     </StoreProvider>
   );
 };

@@ -1,0 +1,15 @@
+.Input {
+  display: flex;
+  font-size: var(--font-size-sm);
+  background: var(--primary-color);
+  border: 1px solid var(--tertiary-color);
+}
+
+.inner {
+  flex-basis: 100%;
+  padding: to-rem(5px) to-rem(10px);
+
+  &:focus {
+    outline-color: var(--secondary-color-hover);
+  }
+}

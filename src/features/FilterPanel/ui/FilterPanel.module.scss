@@ -1,0 +1,11 @@
+.FilterPanel {
+  display: flex;
+  gap: to-rem(20px);
+  justify-content: center;
+}
+
+.button {
+  &_active {
+    background: var(--secondary-color-hover);
+  }
+}

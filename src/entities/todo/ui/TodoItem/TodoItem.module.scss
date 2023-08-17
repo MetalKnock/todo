@@ -1,10 +1,12 @@
 .TodoItem {
   display: flex;
+  gap: to-rem(14px);
   align-items: center;
   justify-content: space-between;
 
   padding: to-rem(12px) to-rem(14px);
 
+  word-break: break-all;
   list-style: none;
 
   border: 2px solid var(--color-border);

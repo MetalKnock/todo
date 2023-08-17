@@ -1,0 +1,10 @@
+.filterPanel,
+.createTodo {
+  margin-bottom: to-rem(20px);
+}
+
+.text {
+  font-size: var(--font-size-lg);
+  color: var(--tertiary-color);
+  text-align: center;
+}
