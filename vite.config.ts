@@ -1,10 +1,11 @@
+import path from 'path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import path from 'path';
 import browserslistToEsbuild from 'browserslist-to-esbuild';
+import svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), svgr()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src/'),
@@ -12,5 +13,15 @@ export default defineConfig({
   },
   build: {
     target: browserslistToEsbuild(),
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+          @import "./src/app/styles/_variables.scss";
+          @import "./src/app/styles/_helpers.scss";
+        `,
+      },
+    },
   },
 });
