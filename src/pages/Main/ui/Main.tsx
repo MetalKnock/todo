@@ -24,9 +24,9 @@ const Main = ({ className }: MainProps) => {
     <div className={`${styles.Main} ${className}`}>
       {!isIdle && <CreateTodo />}
       {isLoading && <Spinner />}
+      {isIdle && !isLoading && <p>Empty</p>}
       {!isIdle && !error && !isLoading && <TodoList todos={todos} />}
       {error && <ErrorMessage errorMessage={error} />}
-      {isIdle && !isLoading && <p>Empty</p>}
     </div>
   );
 };

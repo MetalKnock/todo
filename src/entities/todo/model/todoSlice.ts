@@ -34,6 +34,12 @@ const todoSlice = createSlice({
       };
       state.todos.push(todo);
     },
+    toggleTodoById: (state, { payload }: PayloadAction<number>) => {
+      const findTodo = state.todos.find((todo) => todo.id === payload);
+      if (findTodo) {
+        findTodo.completed = !findTodo.completed;
+      }
+    },
   },
   extraReducers(builder) {
     builder
@@ -56,6 +62,6 @@ const todoSlice = createSlice({
   },
 });
 
-export const { createTodo } = todoSlice.actions;
+export const { createTodo, toggleTodoById } = todoSlice.actions;
 
 export { todoSlice };
