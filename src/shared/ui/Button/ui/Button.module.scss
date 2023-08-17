@@ -1,0 +1,17 @@
+.Button {
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+
+  padding: to-rem(10px) to-rem(15px);
+
+  color: var(--primary-color);
+
+  background: var(--secondary-color);
+  border: none;
+
+  &:hover {
+    background: var(--secondary-color-hover);
+  }
+}
