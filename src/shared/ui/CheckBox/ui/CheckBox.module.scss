@@ -1,7 +1,7 @@
 .label {
-  display: block;
   user-select: none;
   position: relative;
+  display: block;
 }
 
 .mark {
@@ -40,10 +40,12 @@
 
 .input {
   position: absolute;
+
   width: 0;
   height: 0;
-  border: 0;
+
   opacity: 0;
+  border: 0;
 
   &:checked {
     & ~ .mark {
