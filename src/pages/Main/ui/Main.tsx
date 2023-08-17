@@ -6,6 +6,7 @@ import { TodoList } from '@/widgets/TodoList';
 import { ErrorMessage } from '@/shared/ui/ErrorMessage';
 import styles from './Main.module.scss';
 import Spinner from '@/shared/ui/Spinner/ui/Spinner';
+import { CreateTodo } from '@/features/CreateTodo';
 
 interface MainProps {
   className?: string;
@@ -18,8 +19,10 @@ const Main = ({ className }: MainProps) => {
   useEffect(() => {
     dispatch(fetchTodos());
   }, [dispatch]);
+
   return (
     <div className={`${styles.Main} ${className}`}>
+      {!isIdle && <CreateTodo />}
       {isLoading && <Spinner />}
       {!isIdle && !error && !isLoading && <TodoList todos={todos} />}
       {error && <ErrorMessage errorMessage={error} />}
