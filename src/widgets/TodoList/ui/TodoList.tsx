@@ -1,6 +1,7 @@
 import { Todo, TodoItem } from '@/entities/todo';
 import styles from './TodoList.module.scss';
 import ToggleTodo from '@/features/ToggleTodo/ui/ToggleTodo';
+import { EditTodo } from '@/features/EditTodo';
 
 interface TodoListProps {
   className?: string;
@@ -10,13 +11,17 @@ interface TodoListProps {
 const TodoList = ({ className, todos }: TodoListProps) => {
   return (
     <ul className={`${styles.TodoList} ${className}`}>
-      {todos.map((todo) => (
-        <TodoItem
-          key={todo.id}
-          todo={todo}
-          leftSlot={<ToggleTodo completed={todo.completed} id={todo.id} />}
-        />
-      ))}
+      {todos.map((todo) => {
+        const { id, title, completed } = todo;
+        return (
+          <TodoItem
+            key={id}
+            todo={todo}
+            leftSlot={<ToggleTodo completed={completed} id={id} />}
+            rightSlot={<EditTodo id={id} title={title} />}
+          />
+        );
+      })}
     </ul>
   );
 };

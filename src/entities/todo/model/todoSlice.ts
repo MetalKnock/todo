@@ -37,13 +37,19 @@ const todoSlice = createSlice({
       state.todos.push(todo);
     },
     toggleTodoById: (state, { payload }: PayloadAction<number>) => {
-      const findTodo = state.todos.find((todo) => todo.id === payload);
-      if (findTodo) {
-        findTodo.completed = !findTodo.completed;
+      const currentTodo = state.todos.find((todo) => todo.id === payload);
+      if (currentTodo) {
+        currentTodo.completed = !currentTodo.completed;
       }
     },
     setFiltrationType: (state, { payload }: PayloadAction<FiltrationType>) => {
       state.filtrationType = payload;
+    },
+    setNewTitle: (state, { payload }: PayloadAction<Pick<Todo, 'id' | 'title'>>) => {
+      const currentTodo = state.todos.find((todo) => todo.id === payload.id);
+      if (currentTodo) {
+        currentTodo.title = payload.title;
+      }
     },
   },
   extraReducers(builder) {
@@ -67,6 +73,6 @@ const todoSlice = createSlice({
   },
 });
 
-export const { createTodo, toggleTodoById, setFiltrationType } = todoSlice.actions;
+export const { createTodo, toggleTodoById, setFiltrationType, setNewTitle } = todoSlice.actions;
 
 export { todoSlice };
