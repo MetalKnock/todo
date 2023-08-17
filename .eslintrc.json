@@ -45,6 +45,7 @@
     "@typescript-eslint/default-param-last": "off",
     "react/require-default-props": "off",
     "react/jsx-props-no-spreading": "off",
+    "no-param-reassign": "off",
     "react/function-component-definition": [
       2,
       {
