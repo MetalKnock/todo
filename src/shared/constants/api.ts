@@ -5,4 +5,6 @@ enum ApiPath {
   TODOS = '/todos',
 }
 
-export { API_URL, ApiPath };
+const FETCH_ERROR_MESSAGE = 'Failed fetch';
+
+export { API_URL, ApiPath, FETCH_ERROR_MESSAGE };

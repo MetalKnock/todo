@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getTodos } from './todoApi';
+import { FETCH_ERROR_MESSAGE } from '@/shared/constants/api';
 
 const fetchTodos = createAsyncThunk('todo/fetchTodos', async (_, thunkAPI) => {
   const { rejectWithValue } = thunkAPI;
@@ -11,7 +12,7 @@ const fetchTodos = createAsyncThunk('todo/fetchTodos', async (_, thunkAPI) => {
     if (error instanceof Error) {
       rejectWithValue(error.message);
     }
-    rejectWithValue('Failed fetch');
+    rejectWithValue(FETCH_ERROR_MESSAGE);
   }
   return [];
 });
