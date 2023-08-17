@@ -27,6 +27,10 @@ const Main = ({ className }: MainProps) => {
     dispatch(fetchTodos());
   }, [dispatch]);
 
+  const shouldShowTodoList = !isIdle && !error && !isLoading && todos.length !== 0;
+  const shouldShowEmptyMessage = !isIdle && !error && !isLoading && todos.length === 0;
+  const shouldShowDeleteAllCompleted = filtrationType === 'completed' && todos.length !== 0;
+
   return (
     <div className={`${styles.Main} ${className}`}>
       {!isIdle && (
@@ -37,12 +41,9 @@ const Main = ({ className }: MainProps) => {
       )}
       {isLoading && <Spinner />}
       {isIdle && !isLoading && <p>Idle</p>}
-      {!isIdle && !error && !isLoading && todos.length !== 0 ? (
-        <TodoList todos={todos} />
-      ) : (
-        <p>Empty</p>
-      )}
-      {filtrationType === 'completed' && todos.length !== 0 && <DeleteAllCompleted />}
+      {shouldShowTodoList && <TodoList todos={todos} />}
+      {shouldShowEmptyMessage && <p>Empty</p>}
+      {shouldShowDeleteAllCompleted && <DeleteAllCompleted />}
       {error && <ErrorMessage errorMessage={error} />}
     </div>
   );
