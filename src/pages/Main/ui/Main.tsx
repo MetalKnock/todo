@@ -10,6 +10,7 @@ import { CreateTodo } from '@/features/CreateTodo';
 import { getSelectedTodosSelector } from '@/entities/todo/model/todoSelectors';
 import FilterPanel from '@/features/FilterPanel/ui/FilterPanel';
 import styles from './Main.module.scss';
+import { DeleteAllCompleted } from '@/features/DeleteAllCompleted';
 
 interface MainProps {
   className?: string;
@@ -18,7 +19,8 @@ interface MainProps {
 const Main = ({ className }: MainProps) => {
   const { error, isLoading, isIdle, filtrationType } = useAppSelector((state) => state.todo);
 
-  const todos = useSelector(getSelectedTodosSelector(filtrationType));
+  const selectedTodosSelector = getSelectedTodosSelector(filtrationType);
+  const todos = useSelector(selectedTodosSelector);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -40,6 +42,7 @@ const Main = ({ className }: MainProps) => {
       ) : (
         <p>Empty</p>
       )}
+      {filtrationType === 'completed' && todos.length !== 0 && <DeleteAllCompleted />}
       {error && <ErrorMessage errorMessage={error} />}
     </div>
   );

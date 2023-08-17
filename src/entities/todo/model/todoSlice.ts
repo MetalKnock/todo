@@ -51,6 +51,9 @@ const todoSlice = createSlice({
         currentTodo.title = payload.title;
       }
     },
+    filterCompleted: (state) => {
+      state.todos = state.todos.filter((todo) => !todo.completed);
+    },
   },
   extraReducers(builder) {
     builder
@@ -73,6 +76,7 @@ const todoSlice = createSlice({
   },
 });
 
-export const { createTodo, toggleTodoById, setFiltrationType, setNewTitle } = todoSlice.actions;
+export const { createTodo, toggleTodoById, setFiltrationType, setNewTitle, filterCompleted } =
+  todoSlice.actions;
 
 export { todoSlice };
