@@ -1,10 +1,11 @@
+import { Main } from '@/pages/Main';
 import { StoreProvider } from './providers';
 import './styles/index.scss';
 
 const App = () => {
   return (
     <StoreProvider>
-      <div>App</div>
+      <Main />
     </StoreProvider>
   );
 };
