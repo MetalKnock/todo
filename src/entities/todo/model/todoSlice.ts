@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Todo } from '@/entities/todo/model/todoTypes';
+import { FiltrationType, Todo } from '@/entities/todo/model/todoTypes';
 import { fetchTodos } from './todoServices';
 import { NUMBER_OF_TODOS_RECEIVED, USER_ID } from '@/shared/constants/todo';
 import { FETCH_ERROR_MESSAGE } from '@/shared/constants/api';
@@ -10,6 +10,7 @@ interface TodoSliceState {
   isIdle: boolean;
   error: string | null;
   counterIds: number;
+  filtrationType: FiltrationType;
 }
 
 const initialState: TodoSliceState = {
@@ -18,6 +19,7 @@ const initialState: TodoSliceState = {
   isIdle: true,
   error: null,
   counterIds: 0,
+  filtrationType: 'all',
 };
 
 const todoSlice = createSlice({
@@ -39,6 +41,9 @@ const todoSlice = createSlice({
       if (findTodo) {
         findTodo.completed = !findTodo.completed;
       }
+    },
+    setFiltrationType: (state, { payload }: PayloadAction<FiltrationType>) => {
+      state.filtrationType = payload;
     },
   },
   extraReducers(builder) {
@@ -62,6 +67,6 @@ const todoSlice = createSlice({
   },
 });
 
-export const { createTodo, toggleTodoById } = todoSlice.actions;
+export const { createTodo, toggleTodoById, setFiltrationType } = todoSlice.actions;
 
 export { todoSlice };
