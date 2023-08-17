@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Todo } from '@/entities/todo/model/todoTypes';
 import { fetchTodos } from './todoServices';
-import { NUMBER_OF_TODOS_RECEIVED } from '@/shared/constants/todo';
+import { NUMBER_OF_TODOS_RECEIVED, USER_ID } from '@/shared/constants/todo';
 import { FETCH_ERROR_MESSAGE } from '@/shared/constants/api';
 
 interface TodoSliceState {
@@ -23,7 +23,18 @@ const initialState: TodoSliceState = {
 const todoSlice = createSlice({
   name: 'todo',
   initialState,
-  reducers: {},
+  reducers: {
+    createTodo: (state, { payload }: PayloadAction<string>) => {
+      state.counterIds += 1;
+      const todo: Todo = {
+        userId: USER_ID,
+        id: state.counterIds,
+        title: payload,
+        completed: false,
+      };
+      state.todos.push(todo);
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchTodos.pending, (state) => {
@@ -44,5 +55,7 @@ const todoSlice = createSlice({
       });
   },
 });
+
+export const { createTodo } = todoSlice.actions;
 
 export { todoSlice };
