@@ -1,6 +1,7 @@
 import { toggleTodoById } from '@/entities/todo/model/todoSlice';
-import styles from './ToggleTodo.module.scss';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
+import { CheckBox } from '@/shared/ui/CheckBox';
+import styles from './ToggleTodo.module.scss';
 
 interface ToggleTodoProps {
   className?: string;
@@ -11,16 +12,17 @@ interface ToggleTodoProps {
 const ToggleTodo = ({ className, completed, id }: ToggleTodoProps) => {
   const dispatch = useAppDispatch();
 
-  const handleClick = () => {
+  const handleChange = () => {
     dispatch(toggleTodoById(id));
   };
 
   return (
-    <input
+    <CheckBox
       className={`${styles.ToggleTodo} ${className}`}
+      id={String(id)}
       type='checkbox'
       checked={completed}
-      onClick={handleClick}
+      onChange={handleChange}
     />
   );
 };

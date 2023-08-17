@@ -1,7 +1,8 @@
+import { memo } from 'react';
 import { ReactComponent as EditIcon } from '@/shared/assets/icons/edit.svg';
-import styles from './EditTodo.module.scss';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { setNewTitle } from '@/entities/todo/model/todoSlice';
+import styles from './EditTodo.module.scss';
 
 interface EditTodoProps {
   className?: string;
@@ -9,7 +10,7 @@ interface EditTodoProps {
   title: string;
 }
 
-const EditTodo = ({ className, id, title }: EditTodoProps) => {
+const EditTodo = memo(({ className, id, title }: EditTodoProps) => {
   const dispatch = useAppDispatch();
   const handleClick = () => {
     // eslint-disable-next-line no-alert
@@ -17,6 +18,6 @@ const EditTodo = ({ className, id, title }: EditTodoProps) => {
     dispatch(setNewTitle({ id, title: newTitle || title }));
   };
   return <EditIcon className={`${styles.EditTodo} ${className}`} onClick={handleClick} />;
-};
+});
 
 export default EditTodo;

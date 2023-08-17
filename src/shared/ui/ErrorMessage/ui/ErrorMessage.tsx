@@ -1,5 +1,4 @@
 import { memo } from 'react';
-import styles from './ErrorMessage.module.scss';
 
 interface ErrorProps {
   className?: string;
@@ -7,7 +6,7 @@ interface ErrorProps {
 }
 
 const ErrorMessage = memo(({ className, errorMessage }: ErrorProps) => {
-  return <p className={`${styles.ErrorMessage} ${className}`}>{errorMessage}</p>;
+  return <p className={className}>{errorMessage}</p>;
 });
 
 export default ErrorMessage;

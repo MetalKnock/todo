@@ -1,0 +1,52 @@
+.label {
+  user-select: none;
+  position: relative;
+}
+
+.mark {
+  cursor: pointer;
+
+  display: block;
+
+  width: 16px;
+  height: 16px;
+
+  background: var(--secondary-color);
+  outline: 1px solid var(--secondary-color);
+
+  &::after {
+    content: '';
+
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+
+    display: block;
+
+    width: 4px;
+    height: 8px;
+
+    opacity: 0;
+    border: solid var(--primary-color);
+    border-width: 0 2px 2px 0;
+  }
+
+  &:hover {
+    background: var(--secondary-color-hover);
+  }
+}
+
+.input {
+  position: absolute;
+  width: 0;
+  height: 0;
+
+  &:checked {
+    & ~ .mark {
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+}

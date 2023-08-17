@@ -8,9 +8,9 @@ import { ErrorMessage } from '@/shared/ui/ErrorMessage';
 import { Spinner } from '@/shared/ui/Spinner/';
 import { CreateTodo } from '@/features/CreateTodo';
 import { getSelectedTodosSelector } from '@/entities/todo/model/todoSelectors';
-import FilterPanel from '@/features/FilterPanel/ui/FilterPanel';
-import styles from './Main.module.scss';
+import { FilterPanel } from '@/features/FilterPanel/';
 import { DeleteAllCompleted } from '@/features/DeleteAllCompleted';
+import styles from './Main.module.scss';
 
 interface MainProps {
   className?: string;
@@ -27,22 +27,23 @@ const Main = ({ className }: MainProps) => {
     dispatch(fetchTodos());
   }, [dispatch]);
 
+  const shouldShowTodoList = !isIdle && !error && !isLoading && todos.length !== 0;
+  const shouldShowEmptyMessage = !isIdle && !error && !isLoading && todos.length === 0;
+  const shouldShowDeleteAllCompleted = filtrationType === 'completed' && todos.length !== 0;
+
   return (
     <div className={`${styles.Main} ${className}`}>
       {!isIdle && (
         <>
-          <FilterPanel />
-          <CreateTodo />
+          <FilterPanel className={styles.filterPanel} />
+          <CreateTodo className={styles.createTodo} />
         </>
       )}
       {isLoading && <Spinner />}
-      {isIdle && !isLoading && <p>Idle</p>}
-      {!isIdle && !error && !isLoading && todos.length !== 0 ? (
-        <TodoList todos={todos} />
-      ) : (
-        <p>Empty</p>
-      )}
-      {filtrationType === 'completed' && todos.length !== 0 && <DeleteAllCompleted />}
+      {isIdle && !isLoading && <p className={styles.text}>Idle</p>}
+      {shouldShowTodoList && <TodoList todos={todos} />}
+      {shouldShowEmptyMessage && <p className={styles.text}>Empty</p>}
+      {shouldShowDeleteAllCompleted && <DeleteAllCompleted />}
       {error && <ErrorMessage errorMessage={error} />}
     </div>
   );

@@ -11,7 +11,7 @@ const Input = memo(({ className, label, leftSlot, ...props }: InputProps) => {
   const input = (
     <div className={`${styles.Input} ${className}`}>
       {leftSlot && <div className={styles.Input__leftSlot}>{leftSlot}</div>}
-      <input className={styles.Input__input} {...props} />
+      <input className={styles.inner} {...props} />
     </div>
   );
 
