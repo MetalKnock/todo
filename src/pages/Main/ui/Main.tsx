@@ -33,14 +33,14 @@ const Main = ({ className }: MainProps) => {
 
   return (
     <div className={`${styles.Main} ${className}`}>
-      {!isIdle && (
+      {!isIdle && !isLoading && !error && (
         <>
           <FilterPanel className={styles.filterPanel} />
           <CreateTodo className={styles.createTodo} />
         </>
       )}
       {isLoading && <Spinner />}
-      {isIdle && !isLoading && <p className={styles.text}>Idle</p>}
+      {isIdle && <p className={styles.text}>Idle</p>}
       {shouldShowTodoList && <TodoList todos={todos} />}
       {shouldShowEmptyMessage && <p className={styles.text}>Empty</p>}
       {shouldShowDeleteAllCompleted && <DeleteAllCompleted />}

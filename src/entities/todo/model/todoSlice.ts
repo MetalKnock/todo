@@ -58,13 +58,13 @@ const todoSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchTodos.pending, (state) => {
+        if (state.isIdle) {
+          state.isIdle = false;
+        }
         state.error = null;
         state.isLoading = true;
       })
       .addCase(fetchTodos.fulfilled, (state, action: PayloadAction<Todo[]>) => {
-        if (state.isIdle) {
-          state.isIdle = false;
-        }
         state.isLoading = false;
         state.todos = action.payload.slice(0, NUMBER_OF_TODOS_RECEIVED);
         state.counterIds = NUMBER_OF_TODOS_RECEIVED;
