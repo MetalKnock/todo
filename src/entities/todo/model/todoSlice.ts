@@ -51,6 +51,9 @@ const todoSlice = createSlice({
         currentTodo.title = payload.title;
       }
     },
+    deleteTodoById: (state, { payload }: PayloadAction<number>) => {
+      state.todos = state.todos.filter((todo) => todo.id !== payload);
+    },
     filterCompleted: (state) => {
       state.todos = state.todos.filter((todo) => !todo.completed);
     },
@@ -76,7 +79,13 @@ const todoSlice = createSlice({
   },
 });
 
-export const { createTodo, toggleTodoById, setFiltrationType, setNewTitle, filterCompleted } =
-  todoSlice.actions;
+export const {
+  createTodo,
+  toggleTodoById,
+  setFiltrationType,
+  setNewTitle,
+  filterCompleted,
+  deleteTodoById,
+} = todoSlice.actions;
 
 export { todoSlice };

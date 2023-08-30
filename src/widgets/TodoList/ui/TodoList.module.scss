@@ -4,3 +4,9 @@
   gap: to-rem(13px);
   padding: 0;
 }
+
+.rightSlot {
+  display: flex;
+  flex-direction: column;
+  gap: to-rem(15px);
+}
