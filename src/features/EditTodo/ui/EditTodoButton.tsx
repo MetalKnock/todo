@@ -9,7 +9,7 @@ interface EditTodoButtonProps {
   id: number;
 }
 
-const EditTodoButton = memo(({ className, id }: EditTodoButtonProps) => {
+const EditTodoButton: React.FC<EditTodoButtonProps> = memo(({ className, id }: EditTodoButtonProps) => {
   const dispatch = useAppDispatch();
 
   const handleClick = () => {
