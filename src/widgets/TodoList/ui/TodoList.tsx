@@ -33,4 +33,8 @@ const TodoList = ({ className, todos }: TodoListProps) => {
   );
 };
 
+TodoList.defaultProps = {
+  className: '',
+};
+
 export default TodoList;

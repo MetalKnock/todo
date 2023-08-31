@@ -3,11 +3,11 @@ import styles from './Input.module.scss';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
-  label?: string;
+  label?: string | null;
   leftSlot?: ReactNode;
 }
 
-const Input = memo(({ className, label, leftSlot, ...props }: InputProps) => {
+const Input: React.FC<InputProps> = memo(({ className, label, leftSlot, ...props }: InputProps) => {
   const input = (
     <div className={`${styles.Input} ${className}`}>
       {leftSlot && <div className={styles.Input__leftSlot}>{leftSlot}</div>}
@@ -26,5 +26,11 @@ const Input = memo(({ className, label, leftSlot, ...props }: InputProps) => {
 
   return input;
 });
+
+Input.defaultProps = {
+  className: '',
+  label: null,
+  leftSlot: null,
+};
 
 export default Input;

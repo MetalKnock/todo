@@ -33,4 +33,8 @@ const FilterPanel = ({ className }: FilterPanelProps) => {
   );
 };
 
+FilterPanel.defaultProps = {
+  className: '',
+};
+
 export default FilterPanel;

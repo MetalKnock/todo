@@ -1,0 +1,9 @@
+.DeleteTodo {
+  cursor: pointer;
+
+  &:hover {
+    path {
+      fill: var(--secondary-color-hover);
+    }
+  }
+}

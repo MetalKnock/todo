@@ -1,3 +1,9 @@
-.EditTodo {
+.EditTodoButton {
   cursor: pointer;
+
+  &:hover {
+    path {
+      fill: var(--secondary-color-hover);
+    }
+  }
 }
