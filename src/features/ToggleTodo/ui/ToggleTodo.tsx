@@ -1,7 +1,6 @@
 import { toggleTodoById } from '@/entities/todo/model/todoSlice';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { CheckBox } from '@/shared/ui/CheckBox';
-import styles from './ToggleTodo.module.scss';
 
 interface ToggleTodoProps {
   className?: string;
@@ -18,7 +17,7 @@ const ToggleTodo = ({ className, completed, id }: ToggleTodoProps) => {
 
   return (
     <CheckBox
-      className={`${styles.ToggleTodo} ${className}`}
+      className={className}
       id={String(id)}
       type='checkbox'
       checked={completed}
