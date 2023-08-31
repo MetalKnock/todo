@@ -33,6 +33,7 @@ const todoSlice = createSlice({
         id: state.counterIds,
         title: payload,
         completed: false,
+        isEdit: false,
       };
       state.todos.push(todo);
     },
@@ -45,10 +46,17 @@ const todoSlice = createSlice({
     setFiltrationType: (state, { payload }: PayloadAction<FiltrationType>) => {
       state.filtrationType = payload;
     },
-    setNewTitle: (state, { payload }: PayloadAction<Pick<Todo, 'id' | 'title'>>) => {
+    toggleEditById: (state, { payload }: PayloadAction<number>) => {
+      const currentTodo = state.todos.find((todo) => todo.id === payload);
+      if (currentTodo) {
+        currentTodo.isEdit = !currentTodo.isEdit;
+      }
+    },
+    updateTodo: (state, { payload }: PayloadAction<Pick<Todo, 'id' | 'title'>>) => {
       const currentTodo = state.todos.find((todo) => todo.id === payload.id);
       if (currentTodo) {
         currentTodo.title = payload.title;
+        currentTodo.isEdit = false;
       }
     },
     deleteTodoById: (state, { payload }: PayloadAction<number>) => {
@@ -69,7 +77,7 @@ const todoSlice = createSlice({
       })
       .addCase(fetchTodos.fulfilled, (state, action: PayloadAction<Todo[]>) => {
         state.isLoading = false;
-        state.todos = action.payload;
+        state.todos = action.payload.map((todo) => ({ ...todo, isEdit: false }));
         state.counterIds = LIMIT_TODOS;
       })
       .addCase(fetchTodos.rejected, (state, action) => {
@@ -83,7 +91,8 @@ export const {
   createTodo,
   toggleTodoById,
   setFiltrationType,
-  setNewTitle,
+  toggleEditById,
+  updateTodo,
   filterCompleted,
   deleteTodoById,
 } = todoSlice.actions;

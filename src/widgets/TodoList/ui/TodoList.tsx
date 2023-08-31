@@ -1,8 +1,8 @@
-import { Todo, TodoItem } from '@/entities/todo';
-import styles from './TodoList.module.scss';
-import ToggleTodo from '@/features/ToggleTodo/ui/ToggleTodo';
-import { EditTodo } from '@/features/EditTodo';
+import { Todo, TodoItem, TodoView } from '@/entities/todo';
+import { EditTodoButton, EditTodoForm } from '@/features/EditTodo';
 import { DeleteTodo } from '@/features/DeleteTodo';
+import { ToggleTodo } from '@/features/ToggleTodo';
+import styles from './TodoList.module.scss';
 
 interface TodoListProps {
   className?: string;
@@ -13,19 +13,20 @@ const TodoList = ({ className, todos }: TodoListProps) => {
   return (
     <ul className={`${styles.TodoList} ${className}`}>
       {todos.map((todo) => {
-        const { id, title, completed } = todo;
+        const { id, completed, isEdit } = todo;
         return (
           <TodoItem
             key={id}
-            todo={todo}
             leftSlot={<ToggleTodo completed={completed} id={id} />}
             rightSlot={
               <div className={styles.rightSlot}>
-                <EditTodo id={id} title={title} />
+                <EditTodoButton id={id} />
                 <DeleteTodo id={id} />
               </div>
             }
-          />
+          >
+            {!isEdit ? <TodoView todo={todo} /> : <EditTodoForm todo={todo} />}
+          </TodoItem>
         );
       })}
     </ul>

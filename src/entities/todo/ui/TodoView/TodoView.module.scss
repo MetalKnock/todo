@@ -1,0 +1,7 @@
+.text {
+  color: var(--tertiary-color);
+
+  &_lineThrough {
+    text-decoration: line-through;
+  }
+}
