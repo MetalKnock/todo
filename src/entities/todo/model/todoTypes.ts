@@ -3,6 +3,7 @@ interface Todo {
   id: number;
   title: string;
   completed: boolean;
+  isEdit: boolean;
 }
 
 type FiltrationType = 'all' | 'active' | 'completed';
