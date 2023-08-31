@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { FiltrationType, Todo } from '@/entities/todo/model/todoTypes';
 import { fetchTodos } from './todoServices';
-import { NUMBER_OF_TODOS_RECEIVED, USER_ID } from '@/shared/constants/todo';
+import { LIMIT_TODOS, USER_ID } from '@/shared/constants/todo';
 import { FETCH_ERROR_MESSAGE } from '@/shared/constants/api';
 
 interface TodoSliceState {
@@ -69,8 +69,8 @@ const todoSlice = createSlice({
       })
       .addCase(fetchTodos.fulfilled, (state, action: PayloadAction<Todo[]>) => {
         state.isLoading = false;
-        state.todos = action.payload.slice(0, NUMBER_OF_TODOS_RECEIVED);
-        state.counterIds = NUMBER_OF_TODOS_RECEIVED;
+        state.todos = action.payload;
+        state.counterIds = LIMIT_TODOS;
       })
       .addCase(fetchTodos.rejected, (state, action) => {
         state.isLoading = false;
