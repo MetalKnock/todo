@@ -1,4 +1,5 @@
 export { getTodos } from './model/todoApi';
+export { useTodos } from './model/todoHooks';
 export { fetchTodos } from './model/todoServices';
 export { todoSlice } from './model/todoSlice';
 export type { Todo } from './model/todoTypes';
