@@ -7,7 +7,7 @@ interface TodoViewProps {
   todo: Todo;
 }
 
-const TodoView = memo(({ className, todo }: TodoViewProps) => {
+const TodoView: React.FC<TodoViewProps> = memo(({ className, todo }: TodoViewProps) => {
   const { title, completed } = todo;
   return (
     <p className={`${styles.text} ${completed ? styles.text_lineThrough : ''} ${className}`}>
@@ -15,5 +15,9 @@ const TodoView = memo(({ className, todo }: TodoViewProps) => {
     </p>
   );
 });
+
+TodoView.defaultProps = {
+  className: '',
+};
 
 export default TodoView;

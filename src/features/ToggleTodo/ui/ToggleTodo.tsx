@@ -27,4 +27,8 @@ const ToggleTodo = ({ className, completed, id }: ToggleTodoProps) => {
   );
 };
 
+ToggleTodo.defaultProps = {
+  className: '',
+};
+
 export default ToggleTodo;

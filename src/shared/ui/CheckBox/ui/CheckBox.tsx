@@ -1,4 +1,4 @@
-import { InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes, memo } from 'react';
 import styles from './CheckBox.module.scss';
 
 interface CheckBoxProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -6,7 +6,7 @@ interface CheckBoxProps extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
 }
 
-const CheckBox = ({ className, id, ...props }: CheckBoxProps) => {
+const CheckBox: React.FC<CheckBoxProps> = memo(({ className, id, ...props }: CheckBoxProps) => {
   return (
     <div className={`${styles.CheckBox} ${className}`}>
       <label className={styles.label} htmlFor={id}>
@@ -15,6 +15,10 @@ const CheckBox = ({ className, id, ...props }: CheckBoxProps) => {
       </label>
     </div>
   );
+});
+
+CheckBox.defaultProps = {
+  className: '',
 };
 
 export default CheckBox;

@@ -40,4 +40,8 @@ const CreateTodo = ({ className }: CreateTodoProps) => {
   );
 };
 
+CreateTodo.defaultProps = {
+  className: '',
+};
+
 export default CreateTodo;

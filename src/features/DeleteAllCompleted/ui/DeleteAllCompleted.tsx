@@ -20,4 +20,8 @@ const DeleteAllCompleted = ({ className }: DeleteAllCompletedProps) => {
   );
 };
 
+DeleteAllCompleted.defaultProps = {
+  className: '',
+};
+
 export default DeleteAllCompleted;

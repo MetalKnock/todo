@@ -40,4 +40,8 @@ const EditTodoForm = ({ className, todo }: EditTodoFormProps) => {
   );
 };
 
+EditTodoForm.defaultProps = {
+  className: '',
+};
+
 export default EditTodoForm;

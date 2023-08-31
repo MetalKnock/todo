@@ -8,14 +8,22 @@ interface TodoItemProps {
   rightSlot?: ReactNode;
 }
 
-const TodoItem = memo(({ className, leftSlot, children, rightSlot }: TodoItemProps) => {
-  return (
-    <li className={`${styles.TodoItem} ${className}`}>
-      {leftSlot}
-      {children}
-      {rightSlot}
-    </li>
-  );
-});
+const TodoItem: React.FC<TodoItemProps> = memo(
+  ({ className, leftSlot, children, rightSlot }: TodoItemProps) => {
+    return (
+      <li className={`${styles.TodoItem} ${className}`}>
+        {leftSlot}
+        {children}
+        {rightSlot}
+      </li>
+    );
+  }
+);
+
+TodoItem.defaultProps = {
+  className: '',
+  leftSlot: null,
+  rightSlot: null,
+};
 
 export default TodoItem;

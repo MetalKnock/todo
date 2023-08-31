@@ -33,7 +33,7 @@ const Main = ({ className }: MainProps) => {
   const shouldShowDeleteAllCompleted = filtrationType === 'completed' && todos.length !== 0;
 
   return (
-    <div className={`${styles.Main} ${className}`}>
+    <div className={className}>
       {!isIdle && !isLoading && !error && (
         <>
           <FilterPanel className={styles.filterPanel} />
@@ -48,6 +48,10 @@ const Main = ({ className }: MainProps) => {
       {error && <ErrorMessage errorMessage={error} />}
     </div>
   );
+};
+
+Main.defaultProps = {
+  className: '',
 };
 
 export default Main;

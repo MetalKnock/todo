@@ -18,4 +18,8 @@ const DeleteTodo = ({ className, id }: DeleteTodoProps) => {
   return <DeleteIcon className={`${styles.DeleteTodo} ${className}`} onClick={handleClick} />;
 };
 
+DeleteTodo.defaultProps = {
+  className: '',
+};
+
 export default DeleteTodo;

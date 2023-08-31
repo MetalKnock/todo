@@ -5,8 +5,12 @@ interface SpinnerProps {
   className?: string;
 }
 
-const Spinner = memo(({ className }: SpinnerProps) => {
+const Spinner: React.FC<SpinnerProps> = memo(({ className }: SpinnerProps) => {
   return <SpinnerImage className={className} />;
 });
+
+Spinner.defaultProps = {
+  className: '',
+};
 
 export default Spinner;

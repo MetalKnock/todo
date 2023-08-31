@@ -19,4 +19,8 @@ const EditTodoButton = memo(({ className, id }: EditTodoButtonProps) => {
   return <EditIcon className={`${styles.EditTodoButton} ${className}`} onClick={handleClick} />;
 });
 
+EditTodoButton.defaultProps = {
+  className: '',
+};
+
 export default EditTodoButton;

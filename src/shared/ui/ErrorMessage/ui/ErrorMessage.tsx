@@ -6,8 +6,12 @@ interface ErrorProps {
   errorMessage: string;
 }
 
-const ErrorMessage = memo(({ className, errorMessage }: ErrorProps) => {
+const ErrorMessage: React.FC<ErrorProps> = memo(({ className, errorMessage }: ErrorProps) => {
   return <p className={`${styles.ErrorMessage} ${className}`}>{errorMessage}</p>;
 });
+
+ErrorMessage.defaultProps = {
+  className: '',
+};
 
 export default ErrorMessage;
