@@ -1,15 +1,12 @@
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { fetchTodos } from '@/entities/todo/model/todoServices';
-import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
-import { useAppSelector } from '@/shared/hooks/useAppSelector';
+import { useMemo } from 'react';
 import { TodoList } from '@/widgets/TodoList';
 import { ErrorMessage } from '@/shared/ui/ErrorMessage';
 import { Spinner } from '@/shared/ui/Spinner/';
 import { CreateTodo } from '@/features/CreateTodo';
-import { getSelectedTodosSelector } from '@/entities/todo/model/todoSelectors';
 import { FilterPanel } from '@/features/FilterPanel/';
 import { DeleteAllCompleted } from '@/features/DeleteAllCompleted';
+import { LIMIT_TODOS } from '@/shared/constants/todo';
+import { useTodos } from '@/entities/todo';
 import styles from './Main.module.scss';
 
 interface MainProps {
@@ -17,22 +14,15 @@ interface MainProps {
 }
 
 const Main = ({ className }: MainProps) => {
-  const { error, isLoading, isIdle, filtrationType } = useAppSelector((state) => state.todo);
-
-  const selectedTodosSelector = getSelectedTodosSelector(filtrationType);
-  const todos = useSelector(selectedTodosSelector);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(fetchTodos());
-  }, [dispatch]);
+  const query = useMemo(() => [`_limit=${LIMIT_TODOS}`], []);
+  const { todos, error, isLoading, isIdle, filtrationType } = useTodos(query);
 
   const shouldShowTodoList = !isIdle && !error && !isLoading && todos.length !== 0;
   const shouldShowEmptyMessage = !isIdle && !error && !isLoading && todos.length === 0;
   const shouldShowDeleteAllCompleted = filtrationType === 'completed' && todos.length !== 0;
 
   return (
-    <div className={`${styles.Main} ${className}`}>
+    <div className={className}>
       {!isIdle && !isLoading && !error && (
         <>
           <FilterPanel className={styles.filterPanel} />
@@ -47,6 +37,10 @@ const Main = ({ className }: MainProps) => {
       {error && <ErrorMessage errorMessage={error} />}
     </div>
   );
+};
+
+Main.defaultProps = {
+  className: '',
 };
 
 export default Main;

@@ -1,1 +1,2 @@
-export { default as EditTodo } from './ui/EditTodo';
+export { default as EditTodoButton } from './ui/EditTodoButton';
+export { default as EditTodoForm } from './ui/EditTodoForm';

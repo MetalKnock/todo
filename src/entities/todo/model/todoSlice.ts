@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { FiltrationType, Todo } from '@/entities/todo/model/todoTypes';
 import { fetchTodos } from './todoServices';
-import { NUMBER_OF_TODOS_RECEIVED, USER_ID } from '@/shared/constants/todo';
+import { LIMIT_TODOS, USER_ID } from '@/shared/constants/todo';
 import { FETCH_ERROR_MESSAGE } from '@/shared/constants/api';
 
 interface TodoSliceState {
@@ -33,6 +33,7 @@ const todoSlice = createSlice({
         id: state.counterIds,
         title: payload,
         completed: false,
+        isEdit: false,
       };
       state.todos.push(todo);
     },
@@ -45,11 +46,21 @@ const todoSlice = createSlice({
     setFiltrationType: (state, { payload }: PayloadAction<FiltrationType>) => {
       state.filtrationType = payload;
     },
-    setNewTitle: (state, { payload }: PayloadAction<Pick<Todo, 'id' | 'title'>>) => {
+    toggleEditById: (state, { payload }: PayloadAction<number>) => {
+      const currentTodo = state.todos.find((todo) => todo.id === payload);
+      if (currentTodo) {
+        currentTodo.isEdit = !currentTodo.isEdit;
+      }
+    },
+    updateTodo: (state, { payload }: PayloadAction<Pick<Todo, 'id' | 'title'>>) => {
       const currentTodo = state.todos.find((todo) => todo.id === payload.id);
       if (currentTodo) {
         currentTodo.title = payload.title;
+        currentTodo.isEdit = false;
       }
+    },
+    deleteTodoById: (state, { payload }: PayloadAction<number>) => {
+      state.todos = state.todos.filter((todo) => todo.id !== payload);
     },
     filterCompleted: (state) => {
       state.todos = state.todos.filter((todo) => !todo.completed);
@@ -66,8 +77,8 @@ const todoSlice = createSlice({
       })
       .addCase(fetchTodos.fulfilled, (state, action: PayloadAction<Todo[]>) => {
         state.isLoading = false;
-        state.todos = action.payload.slice(0, NUMBER_OF_TODOS_RECEIVED);
-        state.counterIds = NUMBER_OF_TODOS_RECEIVED;
+        state.todos = action.payload.map((todo) => ({ ...todo, isEdit: false }));
+        state.counterIds = LIMIT_TODOS;
       })
       .addCase(fetchTodos.rejected, (state, action) => {
         state.isLoading = false;
@@ -76,7 +87,14 @@ const todoSlice = createSlice({
   },
 });
 
-export const { createTodo, toggleTodoById, setFiltrationType, setNewTitle, filterCompleted } =
-  todoSlice.actions;
+export const {
+  createTodo,
+  toggleTodoById,
+  setFiltrationType,
+  toggleEditById,
+  updateTodo,
+  filterCompleted,
+  deleteTodoById,
+} = todoSlice.actions;
 
 export { todoSlice };
