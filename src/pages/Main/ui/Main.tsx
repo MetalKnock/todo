@@ -10,6 +10,7 @@ import { CreateTodo } from '@/features/CreateTodo';
 import { getSelectedTodosSelector } from '@/entities/todo/model/todoSelectors';
 import { FilterPanel } from '@/features/FilterPanel/';
 import { DeleteAllCompleted } from '@/features/DeleteAllCompleted';
+import { LIMIT_TODOS } from '@/shared/constants/todo';
 import styles from './Main.module.scss';
 
 interface MainProps {
@@ -24,7 +25,7 @@ const Main = ({ className }: MainProps) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchTodos());
+    dispatch(fetchTodos([`_limit=${LIMIT_TODOS}`]));
   }, [dispatch]);
 
   const shouldShowTodoList = !isIdle && !error && !isLoading && todos.length !== 0;

@@ -20,11 +20,14 @@ const CreateTodo = ({ className }: CreateTodoProps) => {
       setTitleTodo(event.target.value);
     }
   };
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    dispatch(createTodo(titleTodo));
-    setTitleTodo('');
+    const trimmedTitle = titleTodo.trim();
+    if (trimmedTitle) {
+      dispatch(createTodo(trimmedTitle));
+      setTitleTodo('');
+    }
   };
 
   return (
