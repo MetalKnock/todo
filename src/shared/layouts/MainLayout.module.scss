@@ -1,0 +1,12 @@
+.MainLayout {
+  height: 100%;
+}
+
+.header {
+  background: var(--primary-color);
+  @include box-shadow;
+}
+
+.main {
+  margin-top: to-rem(40px);
+}

@@ -1,3 +1,14 @@
+.Main {
+  background: var(--primary-color);
+  padding: to-rem(20px);
+  border-radius: 20px;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  @include box-shadow;
+}
+
 .filterPanel,
 .createTodo {
   margin-bottom: to-rem(20px);
@@ -7,4 +18,8 @@
   font-size: var(--font-size-lg);
   color: var(--tertiary-color);
   text-align: center;
+}
+
+.deleteAll {
+  width: 100%;
 }
