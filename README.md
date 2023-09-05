@@ -22,6 +22,11 @@ $ npm run lint:css
 # Lints your CSS files using Stylelint and automatically fixes any fixable issues.
 $ npm run lint:css:fix
 
+# Runs tests using Vitest.
+$ npm run test
+
+# Runs tests using Vitest with debug output enabled.
+$ npm run test:debug`
 ```
 ## Technologies Used
  - React
@@ -33,3 +38,4 @@ $ npm run lint:css:fix
  - Prettier
  - Vite
  - FSD
+ - Vitest
