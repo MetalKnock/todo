@@ -13,11 +13,11 @@ const TodoList = ({ className, todos }: TodoListProps) => {
   return (
     <ul className={`${styles.TodoList} ${className}`}>
       {todos.map((todo) => {
-        const { id, completed, isEdit } = todo;
+        const { id, completed, isEdit, title } = todo;
         return (
           <TodoItem
             key={id}
-            leftSlot={<ToggleTodo completed={completed} id={id} />}
+            leftSlot={<ToggleTodo completed={completed} id={id} title={title} />}
             rightSlot={
               <div className={styles.rightSlot}>
                 <EditTodoButton id={id} />
