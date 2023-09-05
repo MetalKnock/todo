@@ -1,13 +1,15 @@
 import { Main } from '@/pages/Main';
 import { StoreProvider } from './providers';
 import './styles/index.scss';
+import { MainLayout } from '@/shared/layouts';
+import { HeaderLayout } from '@/widgets/HeaderLayout';
 
 const App = () => {
   return (
     <StoreProvider>
-      <div className='container'>
+      <MainLayout header={<HeaderLayout />}>
         <Main />
-      </div>
+      </MainLayout>
     </StoreProvider>
   );
 };
