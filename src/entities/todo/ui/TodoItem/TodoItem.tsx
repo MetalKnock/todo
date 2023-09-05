@@ -11,7 +11,7 @@ interface TodoItemProps {
 const TodoItem: React.FC<TodoItemProps> = memo(
   ({ className, leftSlot, children, rightSlot }: TodoItemProps) => {
     return (
-      <li className={`${styles.TodoItem} ${className}`}>
+      <li className={`${styles.TodoItem} ${className}`} data-testid='todo-item'>
         {leftSlot}
         {children}
         {rightSlot}

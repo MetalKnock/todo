@@ -15,7 +15,13 @@ const DeleteTodo = ({ className, id }: DeleteTodoProps) => {
     dispatch(deleteTodoById(id));
   };
 
-  return <DeleteIcon className={`${styles.DeleteTodo} ${className}`} onClick={handleClick} />;
+  return (
+    <DeleteIcon
+      className={`${styles.DeleteTodo} ${className}`}
+      onClick={handleClick}
+      data-testid='delete-todo'
+    />
+  );
 };
 
 DeleteTodo.defaultProps = {

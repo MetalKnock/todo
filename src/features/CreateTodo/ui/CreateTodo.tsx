@@ -32,8 +32,18 @@ const CreateTodo = ({ className }: CreateTodoProps) => {
 
   return (
     <form className={`${styles.CreateTodo} ${className}`} onSubmit={handleSubmit}>
-      <Input placeholder={CREATE_TODO_PLACEHOLDER} value={titleTodo} onChange={handleChangeInput} />
-      <Button className={styles.button} type='submit' disabled={!titleTodo}>
+      <Input
+        placeholder={CREATE_TODO_PLACEHOLDER}
+        value={titleTodo}
+        onChange={handleChangeInput}
+        data-testid='create-input'
+      />
+      <Button
+        className={styles.button}
+        type='submit'
+        disabled={!titleTodo}
+        data-testid='create-button'
+      >
         Add todo
       </Button>
     </form>
