@@ -25,10 +25,10 @@ body {
 }
 
 .container {
+  width: 100%;
   max-width: to-rem(1200px);
   margin: 0 auto;
   padding: 0 to-rem(15px);
-  width: 100%;
 }
 
 #root {

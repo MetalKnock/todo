@@ -3,8 +3,8 @@
 }
 
 .header {
-  background: var(--primary-color);
   @include box-shadow;
+  background: var(--primary-color);
 }
 
 .main {

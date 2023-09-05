@@ -1,13 +1,15 @@
 .FilterPanel {
   display: flex;
+  flex-wrap: wrap;
   gap: to-rem(20px);
   justify-content: center;
+
   padding: to-rem(10px) 0;
-  flex-wrap: wrap;
 }
 
 .button {
   flex-grow: 1;
+
   &_active {
     background: var(--secondary-color-hover);
   }

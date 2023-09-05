@@ -1,12 +1,14 @@
 .Main {
-  background: var(--primary-color);
-  padding: to-rem(20px);
-  border-radius: 20px;
-  min-height: 600px;
+  @include box-shadow;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  @include box-shadow;
+
+  min-height: 600px;
+  padding: to-rem(20px);
+
+  background: var(--primary-color);
+  border-radius: 20px;
 }
 
 .filterPanel,
