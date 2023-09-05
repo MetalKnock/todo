@@ -6,9 +6,10 @@ interface ToggleTodoProps {
   className?: string;
   completed: boolean;
   id: number;
+  title: string;
 }
 
-const ToggleTodo = ({ className, completed, id }: ToggleTodoProps) => {
+const ToggleTodo = ({ className, completed, id, title }: ToggleTodoProps) => {
   const dispatch = useAppDispatch();
 
   const handleChange = () => {
@@ -22,6 +23,7 @@ const ToggleTodo = ({ className, completed, id }: ToggleTodoProps) => {
       type='checkbox'
       checked={completed}
       onChange={handleChange}
+      aria-label={`toggle todo: ${title}`}
     />
   );
 };

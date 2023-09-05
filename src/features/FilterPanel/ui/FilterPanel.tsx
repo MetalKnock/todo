@@ -22,7 +22,9 @@ const FilterPanel = ({ className }: FilterPanelProps) => {
     <div className={`${styles.FilterPanel} ${className}`}>
       {FILTER_LIST.map(({ id, type }) => (
         <Button
-          className={type === filtrationType ? styles.button_active : ''}
+          className={
+            type === filtrationType ? `${styles.button} ${styles.button_active}` : styles.button
+          }
           key={id}
           onClick={() => handleClick(type)}
         >

@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import path from 'path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -20,8 +21,14 @@ export default defineConfig({
         additionalData: `
           @import "./src/app/styles/_variables.scss";
           @import "./src/app/styles/_helpers.scss";
+          @import "./src/app/styles/_mixins.scss";
         `,
       },
     },
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./setupTests.ts'],
   },
 });

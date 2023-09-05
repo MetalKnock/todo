@@ -9,15 +9,23 @@ interface EditTodoButtonProps {
   id: number;
 }
 
-const EditTodoButton: React.FC<EditTodoButtonProps> = memo(({ className, id }: EditTodoButtonProps) => {
-  const dispatch = useAppDispatch();
+const EditTodoButton: React.FC<EditTodoButtonProps> = memo(
+  ({ className, id }: EditTodoButtonProps) => {
+    const dispatch = useAppDispatch();
 
-  const handleClick = () => {
-    dispatch(toggleEditById(id));
-  };
+    const handleClick = () => {
+      dispatch(toggleEditById(id));
+    };
 
-  return <EditIcon className={`${styles.EditTodoButton} ${className}`} onClick={handleClick} />;
-});
+    return (
+      <EditIcon
+        className={`${styles.EditTodoButton} ${className}`}
+        onClick={handleClick}
+        data-testid='edit-todo-button'
+      />
+    );
+  }
+);
 
 EditTodoButton.defaultProps = {
   className: '',

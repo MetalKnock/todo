@@ -33,7 +33,11 @@ const EditTodoForm = ({ className, todo }: EditTodoFormProps) => {
   };
 
   return (
-    <form className={`${styles.EditTodoForm} ${className}`} onSubmit={handleSubmit}>
+    <form
+      className={`${styles.EditTodoForm} ${className}`}
+      onSubmit={handleSubmit}
+      data-testid='edit-todo-form'
+    >
       <Input value={newTitle} onChange={handleChangeInput} />
       <Button type='submit'>Save</Button>
     </form>

@@ -10,7 +10,10 @@ interface TodoViewProps {
 const TodoView: React.FC<TodoViewProps> = memo(({ className, todo }: TodoViewProps) => {
   const { title, completed } = todo;
   return (
-    <p className={`${styles.text} ${completed ? styles.text_lineThrough : ''} ${className}`}>
+    <p
+      className={`${styles.text} ${completed ? styles.text_lineThrough : ''} ${className}`}
+      data-testid='todo-view'
+    >
       {title}
     </p>
   );
